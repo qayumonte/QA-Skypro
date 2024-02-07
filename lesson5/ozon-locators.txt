@@ -1,5 +1,0 @@
-Локатор кнопки Войти - <class="z5ab">
-Локатор кнопки Заказы - <//*[@href="/my/orderlist"]>
-Локатор ссылки OZON Job (в футере) - <//a[@href="https://job.ozon.ru/?perehod=footer"]>
-Локатор выбора валюты (верхний левый угол страницы) - <[data-widget="selectedCurrency"]>
-Локатор выпадашки Везде (в поисковой строке) - <//*[@id="stickyHeader"]/div[2]/div/div/form/div/div[1]>
