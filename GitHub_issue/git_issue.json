@@ -1,0 +1,340 @@
+{
+	"info": {
+		"_postman_id": "0b16531e-5536-490c-b2f3-df075dabb8c2",
+		"name": "Git",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28274334",
+		"_collection_link": "https://www.postman.com/melihovayumonte/workspace/number-2/collection/28274334-0b16531e-5536-490c-b2f3-df075dabb8c2?action=share&source=collection_link&creator=28274334"
+	},
+	"item": [
+		{
+			"name": "Issue 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function(){",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"var key = \"issue_number\"",
+							"var value = pm.response.json().number",
+							"pm.collectionVariables.set(key, value)",
+							"",
+							"var key = \"node_id\"",
+							"var value = pm.response.json().node_id",
+							"pm.collectionVariables.set(key, value)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Issue 1\",\n    \"body\": \"Something went wrong.\",\n    \"labels\": [\n        \"bug\"\n    ],\n    \"assignees\": [\n        \"{{owner}}\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_git}}/{{owner}}/{{repo}}/issues",
+					"host": [
+						"{{url_git}}"
+					],
+					"path": [
+						"{{owner}}",
+						"{{repo}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Issue list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://github.com/qayumonte/QA-Skypro/issues/",
+					"protocol": "https",
+					"host": [
+						"github",
+						"com"
+					],
+					"path": [
+						"qayumonte",
+						"QA-Skypro",
+						"issues",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Issue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url_is}}",
+					"host": [
+						"{{url_is}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Issue 1 to 2",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Issue 2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url_git}}/{{owner}}/{{repo}}/issues/{{issue_number}}",
+					"host": [
+						"{{url_git}}"
+					],
+					"path": [
+						"{{owner}}",
+						"{{repo}}",
+						"issues",
+						"{{issue_number}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Issue 2 lock",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function() {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{url_git}}/{{owner}}/{{repo}}/issues/{{issue_number}}/lock",
+					"host": [
+						"{{url_git}}"
+					],
+					"path": [
+						"{{owner}}",
+						"{{repo}}",
+						"issues",
+						"{{issue_number}}",
+						"lock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Issue 2 onlock",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function() {",
+							"    pm.response.to.have.status(204);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url_git}}/{{owner}}/{{repo}}/issues/{{issue_number}}/lock",
+					"host": [
+						"{{url_git}}"
+					],
+					"path": [
+						"{{owner}}",
+						"{{repo}}",
+						"issues",
+						"{{issue_number}}",
+						"lock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Issue 2 delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation {\n    deleteIssue(input: {issueId: \"{{node_id}}\"\n        clientMutationId: \"Task deleted\"}) {\n        clientMutationId\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "{{url_is}}/graphql",
+					"host": [
+						"{{url_is}}"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "Issue_number",
+			"value": ""
+		},
+		{
+			"key": "issue_number",
+			"value": ""
+		},
+		{
+			"key": "node_id",
+			"value": ""
+		}
+	]
+}
