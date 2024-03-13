@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "c95c59c4-ab92-4a84-93d7-ebd2c3a62fcf",
+		"name": "Safe Browsing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28274334",
+		"_collection_link": "https://www.postman.com/melihovayumonte/workspace/number-2/collection/28274334-c95c59c4-ab92-4a84-93d7-ebd2c3a62fcf?action=share&source=collection_link&creator=28274334"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sba.yandex.net/v4/threatLists?key={{key}}",
+					"protocol": "https",
+					"host": [
+						"sba",
+						"yandex",
+						"net"
+					],
+					"path": [
+						"v4",
+						"threatLists"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"client\": {\n        \"clientId\": \"my-client-id\",\n        \"clientVersion\": \"1.0\"\n    },\n    \"threatInfo\": {\n        \"threatTypes\": [\"MALWARE\", \"SOCIAL_ENGINEERING\", \"UNWANTED_SOFTWARE\"],\n        \"platformTypes\": [\"ANY_PLATFORM\"],\n        \"threatEntryTypes\": [\"URL\"],\n        \"threatEntries\": [\n            {\"url\": \"https://example.com\"},\n            {\"url\": \"https://malicious-site.com\"}\n        ]\n    }\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://safebrowsing.googleapis.com/v4/threatMatches:find?key={{key}}",
+					"protocol": "https",
+					"host": [
+						"safebrowsing",
+						"googleapis",
+						"com"
+					],
+					"path": [
+						"v4",
+						"threatMatches:find"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "{{key}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
